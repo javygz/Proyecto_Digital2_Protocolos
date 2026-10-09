@@ -1,0 +1,9 @@
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:62:6:HAL_MspInit	1
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:87:6:HAL_I2C_MspInit	2
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:124:6:HAL_I2C_MspDeInit	2
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:155:6:HAL_SPI_MspInit	2
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:196:6:HAL_SPI_MspDeInit	2
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:228:6:HAL_TIM_Base_MspInit	2
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:267:6:HAL_TIM_Base_MspDeInit	2
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:297:6:HAL_UART_MspInit	2
+C:/Users/rodri/STM32CubeIDE/workspace_2.2.0/Proyecto2_digital2_comu/Core/Src/stm32f4xx_hal_msp.c:337:6:HAL_UART_MspDeInit	2
