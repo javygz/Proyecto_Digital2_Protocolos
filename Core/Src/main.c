@@ -515,34 +515,32 @@ static void I2C_Reiniciar(void)
 }
 
 // Prueba todas las direcciones e imprime las que responden
+// Revisa una sola vez, al arrancar, si el ESP32 responde por I2C
 static void I2C_Escanear(void)
 {
-  char    mensaje[40];
-  uint8_t direccion = 1;
-  uint8_t encontrados = 0;
-
-  UART_Print("\r\nEscaneando I2C...\r\n");
-  while (direccion < 127) {
-    if (HAL_I2C_IsDeviceReady(&hi2c1, direccion << 1, 1, 10) == HAL_OK) {
-      snprintf(mensaje, sizeof(mensaje), "Encontrado: 0x%02X\r\n", direccion);
-      UART_Print(mensaje);
-      encontrados++;
-    }
-    direccion++;
+  if (HAL_I2C_IsDeviceReady(&hi2c1, DIRECCION_ESP32_I2C, 3, 50) == HAL_OK) {
+    UART_Print("\r\nI2C: ESP32 detectado (0x28)\r\n");
+  } else {
+    UART_Print("\r\nI2C: ESP32 NO detectado\r\n");
   }
-  if (encontrados == 0) UART_Print("No se encontro ningun dispositivo.\r\n");
-  UART_Print("Escaneo terminado.\r\n");
 }
 
 // Pide la medicion al ESP32 (escribe el comando) y lee 1 byte (0-255)
 static HAL_StatusTypeDef I2C_LeerPotenciometro(uint8_t *valor)
 {
   uint8_t comando = COMANDO_I2C_LEER_POT;
+  uint8_t datoViejo;
 
   if (HAL_I2C_Master_Transmit(&hi2c1, DIRECCION_ESP32_I2C, &comando, 1, 100) != HAL_OK) {
     UART_Print("Fallo al ESCRIBIR el comando.\r\n");
     return HAL_ERROR;
   }
+  // Primera lectura: llega el dato anterior, se descarta
+  if (HAL_I2C_Master_Receive(&hi2c1, DIRECCION_ESP32_I2C, &datoViejo, 1, 100) != HAL_OK) {
+    UART_Print("Fallo al LEER el dato.\r\n");
+    return HAL_ERROR;
+  }
+  // Segunda lectura: dato actualizado
   if (HAL_I2C_Master_Receive(&hi2c1, DIRECCION_ESP32_I2C, valor, 1, 100) != HAL_OK) {
     UART_Print("Fallo al LEER el dato.\r\n");
     return HAL_ERROR;
